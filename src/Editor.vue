@@ -133,7 +133,7 @@
                 });
             }
         },
-        destroyed() {
+        unmounted() {
             this.destroyElm();
         }
     };
