@@ -10,7 +10,7 @@
         :name="file_input_name"
         :multiple="true"
         :size="file_size"
-        v-model="insert.files"
+        v-model="files"
         @input-filter="inputFilter"
         @input-file="inputFile"
     >
@@ -36,6 +36,7 @@
         },
         data() {
             return {
+                files: [],
                 currentLine: null,
                 currentImg: null,
                 currentSize: "is-normal",
@@ -44,6 +45,11 @@
                 },
                 isShow: false
             };
+        },
+        watch: {
+            files() {
+                this.$emit("files-changed", this.files);
+            }
         },
         methods: {
             initializeExisting() {
@@ -86,7 +92,7 @@
                             handlerVm.sizingHandler(this);
                         });
                     };
-                    this.insert.isShow = false;
+                    this.$emit("hide");
                 }
             },
             sizingHandler(elm) {

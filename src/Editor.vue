@@ -1,11 +1,8 @@
 <template>
-
     <div>
-
         <!-- Editor Mode -->
 
         <div class="medium-editor-container" v-if="!readOnly">
-
             <insert-embed
                 v-if="editor"
                 :uploadUrl="options.uploadUrl"
@@ -23,16 +20,13 @@
 
             <list-handler v-if="editor" :editor="editor" :onChange="triggerChange"></list-handler>
 
-            <div class="editor" v-bind:class="editorClass" v-html="prefill" ref="editor"> </div>
-
+            <div class="editor" v-bind:class="editorClass" v-html="prefill" ref="editor"></div>
         </div>
 
         <!-- Read Only Mode -->
 
         <read-mode v-if="readOnly" :content="prefill"></read-mode>
-
     </div>
-
 </template>
 
 <script>
@@ -138,4 +132,3 @@
         }
     };
 </script>
-

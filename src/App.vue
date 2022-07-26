@@ -1,25 +1,18 @@
 <template>
     <div id="app">
-        <medium-editor
-            v-model="content"
-            :prefill="defaultValue"
-            :options="options"
-            :onChange="onChange"
-            :hide-gist="false"
-            v-on:uploaded="uploadCallback">
-        </medium-editor>
+        <medium-editor v-model="content" :prefill="defaultValue" :options="options" :onChange="onChange" :hide-gist="false" v-on:uploaded="uploadCallback"> </medium-editor>
     </div>
 </template>
 
 <script>
-import Editor from "./Editor.vue";
+    import Editor from "./Editor.vue";
 
-export default {
-  name: "app",
-  data() {
-    return {
-      content: ``,
-      defaultValue: `<h1>Vuejs <b>Medium Editor</b></h1>
+    export default {
+        name: "app",
+        data() {
+            return {
+                content: ``,
+                defaultValue: `<h1>Vuejs <b>Medium Editor</b></h1>
           <div class="editor-image is-full"><img src="https://source.unsplash.com/yxNURc8he3o/2000x600"></div>
           <pre>axios.interceptors.response.use(function (response) {<br>  return response;<br>}, function (error) {<br>  const originalRequest = error.config;<br>  if (error.response.status === 401 &amp;&amp; !originalRequest._retry) {<br>    originalRequest._retry = true;<br>    const refreshToken = window.localStorage.getItem('refreshToken');<br>    return axios.post('http://localhost:8000/auth/refresh', { refreshToken })<br>      .then(({data}) =&gt; {<br>        window.localStorage.setItem('token', data.token);<br>        window.localStorage.setItem('refreshToken', data.refreshToken);<br>        axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.token;<br>        originalRequest.headers['Authorization'] = 'Bearer ' + data.token;<br>        return axios(originalRequest);<br>      });<br>  }<br>  return Promise.reject(error);<br>});</pre>
           <div class="editor-image-description">righteous indignation and dislike</div>
@@ -49,66 +42,73 @@ export default {
           <div class="editor-image-description">I will give you a complete account of the system</div>
           <p></p>
           <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of wills</p>`,
-      options: {
-        uploadUrl: "https://api.imgur.com/3/image",
-        uploadUrlHeader: {'Authorization': 'Client-ID db856b43cc7f441'},
-        file_input_name: "image",
-        file_size: 1024 * 1024 * 10,
-        imgur: true,
-        toolbar: {
-          buttons: ["bold", "italic",
-          {
-              name: 'anchor',
-              action: 'createLink',
-              aria: 'link',
-              tagNames: ['a'],
-              contentDefault: '<b>🔗</b>',
-              contentFA: '<i class="fa fa-link"></i>',
-          },
-          "underline", "quote", "h1", "h2", "h3", "h4",
-          {
-              name: 'pre',
-              action: 'append-pre',
-              aria: 'code highlight',
-              tagNames: ['pre'],
-              contentDefault: '<b><\\></b>',
-              contentFA: '<i class="fa fa-code fa-lg"></i>'
-          },
-          'unorderedlist', 'orderedlist',
-          {
-              name: 'image',
-              action: 'image',
-              aria: 'insert image from url',
-              tagNames: ['img'],
-              contentDefault: '<b>image</b>',
-              contentFA: '<i class="fa fa-picture-o"></i>'
-          }]
-        }
-      }
+                options: {
+                    uploadUrl: "https://api.imgur.com/3/image",
+                    uploadUrlHeader: { Authorization: "Client-ID db856b43cc7f441" },
+                    file_input_name: "image",
+                    file_size: 1024 * 1024 * 10,
+                    imgur: true,
+                    toolbar: {
+                        buttons: [
+                            "bold",
+                            "italic",
+                            {
+                                name: "anchor",
+                                action: "createLink",
+                                aria: "link",
+                                tagNames: ["a"],
+                                contentDefault: "<b>🔗</b>",
+                                contentFA: '<i class="fa fa-link"></i>'
+                            },
+                            "underline",
+                            "quote",
+                            "h1",
+                            "h2",
+                            "h3",
+                            "h4",
+                            {
+                                name: "pre",
+                                action: "append-pre",
+                                aria: "code highlight",
+                                tagNames: ["pre"],
+                                contentDefault: "<b><\\></b>",
+                                contentFA: '<i class="fa fa-code fa-lg"></i>'
+                            },
+                            "unorderedlist",
+                            "orderedlist",
+                            {
+                                name: "image",
+                                action: "image",
+                                aria: "insert image from url",
+                                tagNames: ["img"],
+                                contentDefault: "<b>image</b>",
+                                contentFA: '<i class="fa fa-picture-o"></i>'
+                            }
+                        ]
+                    }
+                }
+            };
+        },
+        components: {
+            "medium-editor": Editor
+        },
+        methods: {
+            onChange() {
+                console.log(this.content);
+            },
+            uploadCallback(url) {
+                console.log("uploaded url", url);
+            }
+        },
+        mounted() {}
     };
-  },
-  components: {
-    "medium-editor": Editor
-  },
-  methods: {
-    onChange() {
-        console.log(this.content)
-    },
-    uploadCallback(url) {
-        console.log("uploaded url", url)
-    }
-  },
-  mounted(){
-
-  }
-};
 </script>
 
 <style lang="css">
-@import "~bulma/css/bulma.css";
-@import "~medium-editor/dist/css/medium-editor.css";
-@import "./themes/default.css";
-/*@import '~highlight.js/styles/github.css';*/
-/*@import '~highlight.js/styles/ocean.css';*/
-@import '~highlight.js/styles/androidstudio.css';
+    @import "~bulma/css/bulma.css";
+    @import "~medium-editor/dist/css/medium-editor.css";
+    @import "./themes/default.css";
+    /*@import '~highlight.js/styles/github.css';*/
+    /*@import '~highlight.js/styles/ocean.css';*/
+    @import "~highlight.js/styles/androidstudio.css";
 </style>

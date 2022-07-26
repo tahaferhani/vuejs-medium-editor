@@ -1,25 +1,19 @@
 <template>
-
     <div class="image-handler-container">
-
         <div class="insert-image-container" v-show="insert.isShow" v-bind:style="insert.position">
-
             <div class="insert-image-toggle">
-
                 <button v-on:click="toggle" class="btn-toggle">
-
                     <font-awesome-icon icon="plus" />
-
                 </button>
-
             </div>
 
             <div class="insert-image-menu" v-show="insert.isToggle">
-
                 <insert-image
                     v-if="!hideImage"
                     :editor="editor"
                     :insert="insert"
+                    @hide="insert.isShow = false"
+                    @files-changed="insert.files = $event"
                     :editorRef="editorRef"
                     :uploadUrl="uploadUrl"
                     :uploadUrlHeader="uploadUrlHeader"
@@ -32,16 +26,20 @@
                     title="Insert Image"
                 ></insert-image>
 
-                <insert-gist v-if="!hideGist" :editor="editor" v-on:onChange="onChange" :insert="insert" title="Insert gist"></insert-gist>
-
+                <insert-gist
+                    v-if="!hideGist"
+                    :editor="editor"
+                    v-on:onChange="onChange"
+                    :insert="insert"
+                    @toggle="insert.isToggle = false"
+                    @hide="insert.isShow = false"
+                    title="Insert gist"
+                ></insert-gist>
             </div>
-
         </div>
 
-        <image-position :handler="handler" v-on:onPositionChange="onChange"></image-position>
-
+        <image-position :handler="handler" @sizing-changed="onSizingChanged" v-on:onPositionChange="onChange"></image-position>
     </div>
-
 </template>
 
 <script>
@@ -86,6 +84,10 @@
         },
         props: ["editor", "uploadUrl", "uploadUrlHeader", "file_input_name", "file_size", "imgur_bool", "editorRef", "onChange", "hideGist", "hideImage"],
         methods: {
+            onSizingChanged(sizing) {
+                this.handler.currentSize = sizing;
+                this.handler.currentLine.className = "editor-image " + sizing;
+            },
             subscribe() {
                 this.editor.subscribe("editableKeyup", this.detectShowToggle);
                 this.editor.subscribe("editableClick", this.detectShowToggle);
@@ -193,4 +195,3 @@
         }
     };
 </script>
-
