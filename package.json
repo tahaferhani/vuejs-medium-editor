@@ -40,27 +40,32 @@
         "@fortawesome/free-regular-svg-icons": "^5.15.4",
         "@fortawesome/free-solid-svg-icons": "^5.15.4",
         "@fortawesome/vue-fontawesome": "^3.0.1",
-        "bulma": "^0.7.1",
-        "embed-js": "4.2.3",
-        "embed-plugin-github": "^5.0.3",
-        "embed-plugin-noembed": "^5.0.3",
-        "embed-plugin-url": "^5.0.3",
-        "embed-plugin-youtube": "^5.0.3",
-        "embed-preset-basic": "^5.0.3",
-        "highlight.js": "^10.0.3",
-        "iframe-resizer": "^3.6.1",
+        "bulma": "^0.9.4",
+        "embed-js": "^5.0.4",
+        "embed-plugin-github": "^5.0.4",
+        "embed-plugin-noembed": "^5.0.4",
+        "embed-plugin-url": "^5.0.4",
+        "embed-plugin-youtube": "^5.0.4",
+        "embed-preset-basic": "^5.0.4",
+        "highlight.js": "^11.6.0",
+        "iframe-resizer": "^4.3.2",
         "medium-editor": "^5.23.3",
         "pure-gist-embed": "^1.0.3",
-        "randomstring": "^1.1.5",
-        "underscore": "^1.9.1",
+        "randomstring": "^1.2.2",
+        "underscore": "^1.13.4",
         "vue": "^3.2.37",
         "vue-upload-component": "^3.1.2"
     },
     "devDependencies": {
-        "@vue/cli-plugin-babel": "^3.0.0-rc.3",
-        "@vue/cli-plugin-eslint": "^3.0.0-rc.3",
-        "@vue/cli-service": "^3.0.0-rc.3",
-        "vue-template-compiler": "^2.5.16"
+        "@babel/eslint-parser": "^7.18.9",
+        "@vue/cli-plugin-babel": "^5.0.8",
+        "@vue/cli-plugin-eslint": "^5.0.8",
+        "@vue/cli-service": "^5.0.8",
+        "@vue/compiler-sfc": "^3.2.37",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^8.20.0",
+        "eslint-plugin-vue": "^9.2.0",
+        "vue-template-compiler": "^2.7.7"
     },
     "eslintConfig": {
         "root": true,
@@ -68,7 +73,7 @@
             "node": true
         },
         "extends": [
-            "plugin:vue/essential",
+            "plugin:vue/vue3-essential",
             "eslint:recommended"
         ],
         "rules": {
@@ -76,7 +81,7 @@
             "indent": 0
         },
         "parserOptions": {
-            "parser": "babel-eslint"
+            "parser": "@babel/eslint-parser"
         }
     },
     "postcss": {
