@@ -1,11 +1,7 @@
 <template>
-
     <button class="btn-toggle" v-on:click="addEmbed" title="Gist URL">
-
         <font-awesome-icon :icon="['fas', 'code']" />
-
     </button>
-
 </template>
 
 <script>
@@ -13,7 +9,6 @@
     import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
     import { faCode } from "@fortawesome/free-solid-svg-icons";
     import Gist from "pure-gist-embed";
-    import randomstring from "randomstring";
     import _ from "underscore";
 
     library.add(faCode);
@@ -58,8 +53,8 @@
                     this.editor.pasteHTML(`<p class="editor-embed"><br></p>`, { cleanAttrs: [], cleanTags: [], unwrapTags: [] });
                     this.embedElm = this.editor.getSelectedParentElement();
 
-                    this.insert.isToggle = false;
-                    this.insert.isShow = false;
+                    this.$emit("toggle");
+                    this.$emit("hide");
                 }
             },
             detectEmbed(e) {
@@ -67,7 +62,7 @@
                     const url = this.embedElm.innerHTML.replace("<br>", "");
                     this.renderEmbed(url, this.embedElm);
                     this.embedElm = null;
-                    this.insert.isShow = false;
+                    this.$emit("hide");
                 }
             },
             renderEmbed(url, elm) {
@@ -76,7 +71,7 @@
             <div class="gist-embed-iframe"></div>
             `;
                 Gist.get(url).then(result => {
-                    const id = randomstring.generate();
+                    const id = (Date.now() + Math.random()).toString(36).replace(".", "");
                     const iframe = document.createElement("iframe");
                     const html = result.content;
                     const iframeContainer = elm.getElementsByClassName("gist-embed-iframe")[0];
@@ -118,4 +113,3 @@
         }
     };
 </script>
-

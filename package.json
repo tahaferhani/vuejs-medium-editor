@@ -51,7 +51,6 @@
         "iframe-resizer": "^4.3.2",
         "medium-editor": "^5.23.3",
         "pure-gist-embed": "^1.0.3",
-        "randomstring": "^1.2.2",
         "underscore": "^1.13.4",
         "vue": "^3.2.37",
         "vue-upload-component": "^3.1.2"
