@@ -20,7 +20,7 @@
 
             <list-handler v-if="editor" :editor="editor" :onChange="triggerChange"></list-handler>
 
-            <div class="editor" v-bind:class="editorClass" v-html="prefill" ref="editor"></div>
+            <span class="editor" v-bind:class="editorClass" v-html="prefill" ref="editor"></span>
         </div>
 
         <!-- Read Only Mode -->
