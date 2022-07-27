@@ -60,7 +60,7 @@
                 autoLink: true
             };
         },
-        props: ["options", "onChange", "prefill", "readOnly", "hideGist", "hideImage"],
+        props: ["modelValue", "options", "onChange", "prefill", "readOnly", "hideGist", "hideImage"],
         computed: {
             editorOptions() {
                 return _.extend(this.defaultOptions, this.options);
@@ -86,7 +86,7 @@
             createElm() {
                 this.editor = new MediumEditor(this.$refs.editor, this.editorOptions);
                 if (this.prefill) {
-                    this.hasContent = /<[a-z][\s\S]*>/i.test(this.prefill);
+                    this.hasContent = /<[a-z][\s\S]*>/i.test(this.prefill) && this.prefill != "<p><br></p>";
                     this.$refs.editor.focus();
                 }
                 this.editor.subscribe("editableInput", this.triggerChange);
@@ -98,7 +98,7 @@
                 this.addClassToPre();
                 const content = this.editor.getContent();
                 setTimeout(() => {
-                    this.hasContent = /<[a-z][\s\S]*>/i.test(content);
+                    this.hasContent = /<[a-z][\s\S]*>/i.test(content) && content != "<p><br></p>";
                 }, 0);
                 this.$emit("update:modelValue", content);
                 if (this.onChange) {
