@@ -20,12 +20,12 @@
 
             <list-handler v-if="editor" :editor="editor" :onChange="triggerChange"></list-handler>
 
-            <span class="editor" v-bind:class="editorClass" v-html="prefill" ref="editor"></span>
+            <span class="editor" v-bind:class="editorClass" v-html="modelValue || prefill" ref="editor"></span>
         </div>
 
         <!-- Read Only Mode -->
 
-        <read-mode v-if="readOnly" :content="prefill"></read-mode>
+        <read-mode v-if="readOnly" :content="modelValue || prefill"></read-mode>
     </div>
 </template>
 
