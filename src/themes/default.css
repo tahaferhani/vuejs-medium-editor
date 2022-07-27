@@ -1,4 +1,4 @@
-@import url('https://github.githubassets.com/assets/gist-embed-4ac6018bcc05457cde2f66d2e7299d11.css');
+@import url("https://github.githubassets.com/assets/gist-embed-4ac6018bcc05457cde2f66d2e7299d11.css");
 
 .medium-editor-container * {
     outline: none;
@@ -33,18 +33,21 @@
     padding-left: 30px;
 }
 
-.medium-editor-container .medium-editor-element:empty, .medium-editor-container .medium-editor-placeholder {
+.medium-editor-container .medium-editor-element:empty,
+.medium-editor-container .medium-editor-placeholder {
     max-width: 1000px;
     margin: 0 auto;
 }
 
 .medium-editor-container .editor {
+    display: block;
     max-width: 1000px;
+    min-height: 80px;
     margin: 0 auto;
 }
 
 .medium-editor-container .medium-editor-placeholder::after {
-    color: #BBB;
+    color: #bbb;
     max-width: 1000px;
     margin: 0 auto;
     display: block;
@@ -58,7 +61,6 @@
 .medium-editor-container .editor.has-content.medium-editor-placeholder::after {
     display: none;
 }
-
 
 .medium-editor-container h1 {
     font-size: 2.5em;
@@ -102,26 +104,26 @@
     list-style: disc;
 }
 .medium-editor-container ul li {
-    margin-bottom: 0.5em
+    margin-bottom: 0.5em;
 }
 .medium-editor-container ol {
     margin-left: 30px;
 }
 .medium-editor-container ol li {
-    margin-bottom: 0.5em
+    margin-bottom: 0.5em;
 }
 
-.medium-editor-container iframe{
+.medium-editor-container iframe {
     width: 1px;
     min-width: 100%;
 }
 
-iframe{
+iframe {
     border: 0px;
 }
 
 .medium-editor-container blockquote {
-    border-left: 3px solid #3B3E3E;
+    border-left: 3px solid #3b3e3e;
     padding-left: 30px;
     margin-bottom: 1.5em;
     margin-top: 1.5em;
@@ -151,13 +153,13 @@ iframe{
     color: #fff;
     height: 48px;
     min-width: 48px;
-    -webkit-transition: background-color .2s ease-in, color .2s ease-in;
-    transition: background-color .2s ease-in, color .2s ease-in;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-in;
+    transition: background-color 0.2s ease-in, color 0.2s ease-in;
 }
 
 .medium-editor-toolbar li button:hover {
     background-color: transparent;
-    color: #00BD6A;
+    color: #00bd6a;
 }
 
 .medium-editor-toolbar li .medium-editor-button-first {
@@ -173,7 +175,7 @@ iframe{
 
 .medium-editor-toolbar li .medium-editor-button-active {
     background-color: transparent;
-    color: #00BD6A;
+    color: #00bd6a;
 }
 
 .medium-editor-toolbar-form {
@@ -237,13 +239,13 @@ iframe{
 }
 
 .medium-editor-container .insert-image-container .btn-toggle {
-    border: 1px solid #DDD;
+    border: 1px solid #ddd;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     font-size: 16px;
     color: #555;
-    background-color: #FFF;
+    background-color: #fff;
     padding: 5px;
 }
 
@@ -265,7 +267,7 @@ iframe{
     height: 40px;
     border-radius: 50%;
     font-size: 16px;
-    color: #FFF;
+    color: #fff;
     background-color: transparent;
     padding: 0px;
 }
@@ -278,7 +280,7 @@ iframe{
 
 .medium-editor-container .image-handler .btn-toggle:hover {
     cursor: pointer;
-    color: #00BD6A;
+    color: #00bd6a;
 }
 
 .medium-editor-container .insert-image-container .insert-image-menu {
@@ -315,7 +317,7 @@ iframe{
 
 .medium-editor-container .editor-image-description.is-empty::after {
     content: "Image Description";
-    color: #BBB;
+    color: #bbb;
     position: absolute;
     top: 0;
     left: 0;
@@ -365,5 +367,3 @@ iframe{
 .medium-editor-container .editor-embed > a {
     display: none;
 }
-
-
