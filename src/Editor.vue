@@ -20,12 +20,12 @@
 
             <list-handler v-if="editor" :editor="editor" :onChange="triggerChange"></list-handler>
 
-            <span class="editor" v-bind:class="editorClass" v-html="modelValue || prefill" ref="editor"></span>
+            <span class="editor" v-bind:class="editorClass" v-html="content" ref="editor"></span>
         </div>
 
         <!-- Read Only Mode -->
 
-        <read-mode v-if="readOnly" :content="modelValue || prefill"></read-mode>
+        <read-mode v-if="readOnly" :content="modelValue"></read-mode>
     </div>
 </template>
 
@@ -39,9 +39,11 @@
 
     export default {
         name: "medium-editor",
+        props: ["modelValue", "options", "onChange", "prefill", "readOnly", "hideGist", "hideImage"],
         data() {
             return {
                 editor: null,
+                content: this.prefill,
                 defaultOptions: {
                     forcePlainText: false,
                     placeholder: {
@@ -60,7 +62,16 @@
                 autoLink: true
             };
         },
-        props: ["modelValue", "options", "onChange", "prefill", "readOnly", "hideGist", "hideImage"],
+        watch: {
+            modelValue() {
+                if (this.$refs.editor != document.activeElement) {
+                    this.content = this.modelValue;
+                    this.$nextTick(() => {
+                        this.$refs.editor.focus();
+                    });
+                }
+            }
+        },
         computed: {
             editorOptions() {
                 return _.extend(this.defaultOptions, this.options);
