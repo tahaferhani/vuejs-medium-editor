@@ -63,11 +63,12 @@
             };
         },
         watch: {
-            modelValue() {
+            modelValue(content) {
                 if (this.$refs.editor != document.activeElement) {
-                    this.content = this.modelValue;
+                    this.content = content;
                     this.$nextTick(() => {
                         this.$refs.editor.focus();
+                        this.hasContent = /<[a-z][\s\S]*>/i.test(content) && content != "<p><br></p>";
                     });
                 }
             }
