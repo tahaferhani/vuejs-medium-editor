@@ -68,6 +68,9 @@
                     this.content = content;
                     this.$nextTick(() => {
                         this.$refs.editor.focus();
+                        const sel = window.getSelection();
+                        sel.selectAllChildren(this.$refs.editor);
+                        sel.collapseToEnd();
                         this.hasContent = /<[a-z][\s\S]*>/i.test(content) && content != "<p><br></p>";
                     });
                 }
